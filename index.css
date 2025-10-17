@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* .template{
+    !--outside
+    display: ;
+    margin: ;
+
+    border: ;
+
+    !--inside
+    background-color: ;
+    padding: ;
+    
+    !--content
+    height: ;
+    width: ;
+    list: ;
+    text: ;
+    color: ;
+    font: ;
+    cursor: ;
+} */
+
+.game-container{
+    /* outside */
+    margin: 50px auto;
+
+    /* inside */
+    background-color: black;
+    padding: 5px;
+    
+    /* content */
+    height: 90vh;
+    min-height: 525px;
+    aspect-ratio: 3/5;
+    color: white;
+}
+
+.headline{
+    /* content */
+    text-align: center;
+}
+
+.scoreboard{
+    /* outside */
+    display: flex;
+    justify-content: space-between;
+
+    /* content */
+    height: 100px;
+}
+
+.score-box{
+    /* outside */
+    margin: 2px;
+
+    /* inside */
+    background-color: white;
+    padding: 5px;
+    
+    /* content */
+    text-align: center;
+    color: black;
+    position: relative;
+}
+
+.player-box{
+    /* content */
+    flex-grow: 2;
+}
+
+.tie-box{
+    /* content */
+    flex-grow: 1;
+}
+
+.score{
+    /* outside */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+
+    /* inside */
+    font-size: 200%;
+}
+
+.turn-indicator{
+    /* content */
+    text-align: center;
+}
+
+.grid-container{
+    /* content */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.square{
+    /* outside */
+    margin: 2px;
+
+    /* inside */
+    background-color: white;
+    padding: 5px;
+    
+    /* content */
+    aspect-ratio: 1/1;
+    /* flex-grow: 1;
+    flex-basis: 32%; */
+    width: 32%;
+    color: black;
+}
+
+.square:hover{
+    border: solid 2px yellow;
+}
