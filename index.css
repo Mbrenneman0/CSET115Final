@@ -39,7 +39,6 @@
     width: 50vmin;
     min-width: 200px;
     height: fit-content;
-    /* aspect-ratio: 3/5; */
     color: white;
 }
 
@@ -58,7 +57,7 @@
     justify-content: space-between;
 
     /* content */
-    height: 125px;
+    height: 100px;
 }
 
 .score-box{
@@ -101,6 +100,7 @@
     margin-top: 20px;
 
     /* content */
+    height: 32px;
     text-align: center;
 }
 
@@ -114,9 +114,6 @@
 
 .grid-container{
     /* content */
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -139,7 +136,7 @@
     aspect-ratio: 1/1;
     width: 100%;
     color: black;
-    font-size: 25cqw;
+    font-size: 24cqw;
     text-align: center;
 }
 
@@ -151,6 +148,7 @@
 .button-container
 {
     margin-top: 20px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
