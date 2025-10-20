@@ -20,7 +20,7 @@ for(let i = 0; i<9; i++)
 
 }
 
-let defaultTextColor = grid[1][1].style.color;
+let defaultTextColor = grid[0][0].style.color;
 
 
 function takeTurn(item)
