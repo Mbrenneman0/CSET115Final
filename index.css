@@ -28,17 +28,23 @@
 
 .game-container{
     /* outside */
-    margin: 50px auto;
+    margin: 10px auto;
 
     /* inside */
     background-color: black;
     padding: 5px;
     
     /* content */
-    height: 90vh;
-    min-height: 525px;
-    aspect-ratio: 3/5;
+
+    width: 50vmin;
+    min-width: 200px;
+    height: fit-content;
+    /* aspect-ratio: 3/5; */
     color: white;
+}
+
+.row{
+    margin-top: 10px;
 }
 
 .headline{
@@ -52,7 +58,7 @@
     justify-content: space-between;
 
     /* content */
-    height: 100px;
+    height: 125px;
 }
 
 .score-box{
@@ -91,33 +97,64 @@
 }
 
 .turn-indicator{
+    /* outside */
+    margin-top: 20px;
+
     /* content */
     text-align: center;
 }
 
+.turn-indicator p{
+    font-size: larger;
+}
+
+.turn-indicator span{
+    font-size: 20pt;
+}
+
 .grid-container{
     /* content */
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    container-type: inline-size;
+
+    gap: 5px;
+    width: 100%;
+    aspect-ratio: 1/1;
 }
 
 .square{
     /* outside */
-    margin: 2px;
+    border: solid 4px white;
 
     /* inside */
     background-color: white;
-    padding: 5px;
+    padding: 2%;
     
     /* content */
     aspect-ratio: 1/1;
-    /* flex-grow: 1;
-    flex-basis: 32%; */
-    width: 32%;
+    width: 100%;
     color: black;
+    font-size: 25cqw;
+    text-align: center;
 }
 
 .square:hover{
-    border: solid 2px yellow;
+    border: solid 4px white;
+    background-color: #f4f4f4;
+}
+
+.button-container
+{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.next-game-btn{
+    font-size: 15pt;
+    visibility: hidden;
 }
