@@ -25,18 +25,21 @@ let defaultTextColor = grid[0][0].style.color;
 
 function takeTurn(item)
 {
+    //this is the main logic for the game, called when a square is clicked
+
     if(item.getAttribute("locked") === "false")
     {
         hoverEffectOff(item); //hovereffectoff must be before innertext=turn because hovereffectoff resets innertext
         item.innerText = turn; //set content to x or o
         item.setAttribute("locked", true);
-        if(checkEndGame())
+
+        if(checkEndGame()) //evaluates endgame condition and calls endgame logic
         {
-            nextGame();
+            nextGame(); //shows next game button
         }
         else
         {
-            nextTurn();
+            nextTurn(); //updates player turn
         }
     }
 }
@@ -157,7 +160,9 @@ function checkEndGame()
     //checkfor tie
     if(!gameOver)
     {
-        let allBoxesFull = true
+        let allBoxesFull = true //temporary value
+
+        //check if all squares are full
         for(let row = 0; row < 3; row++)
         {
             for(let col = 0; col < 3; col++)
@@ -192,6 +197,7 @@ function checkEndGame()
 
 function updateScore(winner)
 {
+    //updates internal score, score display and shows win text.
     let xScoreField = document.getElementById("x-score");
     let oScoreField = document.getElementById("o-score");
     let tieField = document.getElementById("tie-score");
@@ -219,6 +225,7 @@ function updateScore(winner)
 
 function hoverEffectOn(item)
 {
+    //shows ghosted X or O on hover
     if(item.getAttribute("locked") === "false")
     {
         item.innerText = turn;
@@ -228,7 +235,7 @@ function hoverEffectOn(item)
 
 function hoverEffectOff(item)
 {
-    if(item.style.color !== defaultTextColor)
+    if(item.style.color !== defaultTextColor) //only execute if item is not already in default state
     {
         item.innerText = "";
         item.style.color = defaultTextColor;
