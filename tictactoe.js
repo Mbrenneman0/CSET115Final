@@ -4,8 +4,9 @@ let oScore = 0;
 let numTies = 0;
 let gameOver = false;
 let newGameBtn = document.getElementsByClassName("next-game-btn")[0];
+let highlight = "#00dc00"
 
-//create 2d array from buttons:
+//create 2d array from buttons and initialize DOM with locked attribute and event listeners:
 grid = [new Array(3),new Array(3), new Array(3)]
 for(let i = 0; i<9; i++)
 {
@@ -24,10 +25,10 @@ let defaultTextColor = grid[1][1].style.color;
 
 function takeTurn(item)
 {
-    if(item.getAttribute("locked") === "false" && !gameOver)
+    if(item.getAttribute("locked") === "false")
     {
         hoverEffectOff(item); //hovereffectoff must be before innertext=turn because hovereffectoff resets innertext
-        item.innerText = turn;
+        item.innerText = turn; //set content to x or o
         item.setAttribute("locked", true);
         if(checkEndGame())
         {
@@ -42,6 +43,7 @@ function takeTurn(item)
 
 function nextGame()
 {
+    //shows the next game button
     newGameBtn.style.visibility = "visible";
 }
 
@@ -57,10 +59,15 @@ function reset()
         {
             grid[row][col].innerText = "";
             grid[row][col].setAttribute("locked", false);
+            grid[row][col].style.border = "solid 4px white";
         }
     }
 
-    //rest gameOver state
+    //reset turn text
+    document.getElementsByClassName("turn-indicator")[0].innerHTML =
+        `<p>Player: <span id="player-turn">${turn}</span></p>`;
+
+    //reset gameOver state
     gameOver = false;
 
 }
@@ -92,6 +99,11 @@ function checkEndGame()
         {
             gameOver = true;
             updateScore(turn);
+
+            //highlight winning row
+            grid[row][0].style.border = `solid 4px ${highlight}`;
+            grid[row][1].style.border = `solid 4px ${highlight}`;
+            grid[row][2].style.border = `solid 4px ${highlight}`;
         }
     }
 
@@ -106,6 +118,11 @@ function checkEndGame()
         {
             gameOver = true;
             updateScore(turn);
+
+            //highlight winning column
+            grid[0][col].style.border = `solid 4px ${highlight}`;
+            grid[1][col].style.border = `solid 4px ${highlight}`;
+            grid[2][col].style.border = `solid 4px ${highlight}`;
         }
     }
 
@@ -117,6 +134,11 @@ function checkEndGame()
     {
         gameOver = true;
         updateScore(turn);
+
+        //highlight winning diagonal
+        grid[0][0].style.border = `solid 4px ${highlight}`;
+        grid[1][1].style.border = `solid 4px ${highlight}`;
+        grid[2][2].style.border = `solid 4px ${highlight}`;
     }
 
     box1 = grid[0][2].innerText
@@ -125,6 +147,11 @@ function checkEndGame()
     {
         gameOver = true;
         updateScore(turn);
+
+        //highlight winning diagonal
+        grid[0][2].style.border = `solid 4px ${highlight}`;
+        grid[1][1].style.border = `solid 4px ${highlight}`;
+        grid[2][0].style.border = `solid 4px ${highlight}`;
     }
 
     //checkfor tie
@@ -151,7 +178,14 @@ function checkEndGame()
 
     if(gameOver)
         {
-            console.log("game over")
+            //lock all squares on gameOver
+            for(let row = 0; row < 3; row++)
+            {
+                for(let col = 0; col < 3; col++)
+                {
+                    grid[row][col].setAttribute("locked", true);
+                }
+            }
         }
     return gameOver;
 }
@@ -161,6 +195,7 @@ function updateScore(winner)
     let xScoreField = document.getElementById("x-score");
     let oScoreField = document.getElementById("o-score");
     let tieField = document.getElementById("tie-score");
+    let winText = document.getElementsByClassName("turn-indicator")[0];
 
     if(winner === "X")
     {
@@ -172,20 +207,22 @@ function updateScore(winner)
         oScore++
         oScoreField.innerText = oScore;
     }
+    winText.innerHTML = `<span>Player ${winner} Wins!</span>`;
+
     if(winner === "Tie")
     {
         numTies++;
         tieField.innerText = numTies;
+        winText.innerHTML = "<span>It's a Tie!</span>";
     }
 }
 
 function hoverEffectOn(item)
 {
-    console.log(`mouse entered ${item}`);
     if(item.getAttribute("locked") === "false")
     {
         item.innerText = turn;
-        item.style.color = "#949494";
+        item.style.color = "#a4a4c4";
     }
 }
 
